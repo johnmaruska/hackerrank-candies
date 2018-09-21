@@ -10,9 +10,9 @@ least 1 candy to each child. If two children sit next to each other, then the
 one with the higher rating must get more candies. Alice wants to minimize the
 total number of candies she must buy.
 
-For example, assume her students' ratings are [4, 6, 4, 5, 6, 2]. She gives the
-students candy in the following minimal amounts: [1, 2, 1, 2, 3, 1]. She must
-buy a minimum of 10 candies.
+For example, assume her students' ratings are `[4, 6, 4, 5, 6, 2]`. She gives
+the students candy in the following minimal amounts: `[1, 2, 1, 2, 3, 1]`. She
+must buy a minimum of `10` candies.
 
 ## Technique
 
@@ -37,18 +37,18 @@ incrementing its way back up the stack to the called index. Any elements that
 were calculated in this procedure are stored and can then get retrieved without
 calculation when their index comes.
 
-Given [9 8 7] and asked to calculate idx 0 with rank 9
+Given `[9 8 7]` and asked to calculate idx `0` with rank `9`
 
-1. [0 0 0]  ; initial values
-1. [(+ 1 (candy-val 1)) 0 0]  ; idx 0 based on idx 1
-1. [(+ 1 (candy-val 1)) (+ 1 (candy-val 2)) 0]  ; idx 1 based on idx 2
-1. [(+ 1 (candy-val 1)) (+ 1 (candy-val 2)) 1]  ; idx 2 base case
-1. [(+ 1 (candy-val 1)) (+ 1 1) 1]  ; idx 2 has a value now
-1. [(+ 1 (candy-val 1)) 2 1]  ; calculate idx 1
-1. [(+ 1 2) 2 1]  ; idx 1 has a value now
-1. [3 2 1]  ; calculate idx 0
+1. `[0 0 0]  ; initial values`
+1. `[(+ 1 (candy-val 1)) 0 0]  ; idx 0 based on idx 1`
+1. `[(+ 1 (candy-val 1)) (+ 1 (candy-val 2)) 0]  ; idx 1 based on idx 2`
+1. `[(+ 1 (candy-val 1)) (+ 1 (candy-val 2)) 1]  ; idx 2 base case`
+1. `[(+ 1 (candy-val 1)) (+ 1 1) 1]  ; idx 2 has a value now`
+1. `[(+ 1 (candy-val 1)) 2 1]  ; calculate idx 1`
+1. `[(+ 1 2) 2 1]  ; idx 1 has a value now`
+1. `[3 2 1]  ; calculate idx 0`
 
-The ascending case is trivial in that the left side will start at a value of 1
+The ascending case is trivial in that the left side will start at a value of `1`
 and the subsequent entries will just be increments on the previous.
 
 
@@ -95,8 +95,8 @@ neighbor would be higher and increment the candy value, which is zero, to one.
 Boom. Base case. It's a weird and gross way of handling this but it's what grew
 naturally as I was writing this on the first pass. On a second look, since the
 candy value is acquired this way, I could have eliminated the out of bounds case
-mentioned in the `get-candy-value` function by assuming a default candy-val of 0
-instead of -1. Whoops.
+mentioned in the `get-candy-value` function by assuming a default candy-val of
+`0` instead of `-1`. Whoops.
 
 So, despite the weirdness of the implementation, this performs the calculations
 I intended and worked for the base test cases HackerRank provides before
