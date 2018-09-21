@@ -121,3 +121,17 @@ Finally, sum over the results as before.
 The last change I made I'm not sure if it even helped or not, but the way that
 HackerRank was generating `arr` by re-`def`ing with each line is a pretty bad
 way to do it, so I replaced that with a proper `reduce`.
+
+
+## Python
+
+For illustrative purposes I converted the optimized Clojure into Python3. This
+submission failed tests 11 and 12, which are descending and ascending 100,000
+entries. Both failed with maximum recursion depth exceeded. In the `candies`
+function, the conditional check for edge cases larger than their neighbors
+triggers first a left-to-right recursion, then a right-to-left recursion. In the
+event of an ordered list, one of these will traverse the whole thing. Placing
+this logic after the middle-calculation can solve either one of ascending or
+descending, depending on if it matches left-to-right or right-to-left. This
+wasn't a problem in Clojure due to less restrictions on recursion. Likely a more
+analytical solution would be preferred in Python. 
